@@ -1,0 +1,46 @@
+# Grass Render Distance
+
+A small BepInEx mod for Valheim (1.0) that lets you set how far away grass and other ground clutter is drawn. Vanilla draws grass out to 40 m.
+
+## Installation
+
+1. Install [BepInExPack Valheim](https://thunderstore.io/c/valheim/p/denikson/BepInExPack_Valheim/).
+2. Download the latest release and extract it into your Valheim folder, so the DLL ends up at
+   `Valheim\BepInEx\plugins\GrassRenderDistance\GrassRenderDistance.dll`.
+3. Start the game once to generate the config file.
+
+This is a client-side mod. It doesn't need to be installed on servers or by other players.
+
+## Configuration
+
+Edit `Valheim\BepInEx\config\mode-smith.valheim.grassrenderdistance.cfg`:
+
+| Setting | Default | Range | Description |
+|---|---|---|---|
+| `GrassDistance` | 80 | 20–300 | Grass draw distance in meters |
+
+Changes made in the file take effect the next time you load a world. With [BepInEx ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) installed, you can change the value in-game (F1) and it applies immediately.
+
+Higher distances cost more performance: the amount of grass grows with the square of the distance, so doubling it means roughly 4× as much grass. 80–120 m is a good starting point.
+
+## How it works
+
+A Harmony postfix on `ClutterSystem.Awake` sets `ClutterSystem.m_distance` to the configured value and calls `ClutterSystem.ClearAll()`, which discards existing grass patches so they regenerate at the new distance.
+
+## Building
+
+Requires the .NET SDK and a Valheim install with BepInEx.
+
+```
+dotnet build -c Release
+```
+
+The build copies the DLL into `BepInEx\plugins\GrassRenderDistance\`. If Valheim isn't in the default Steam location, pass your path:
+
+```
+dotnet build -c Release -p:ValheimDir="D:\SteamLibrary\steamapps\common\Valheim"
+```
+
+## License
+
+[MIT](LICENSE)

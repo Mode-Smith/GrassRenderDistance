@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Valheim runs on Unity's Mono with the .NET Framework 4.x API, so target net462 like other BepInEx 5 mods. -->
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>GrassRenderDistance</AssemblyName>
+    <RootNamespace>GrassRenderDistance</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Version>1.0.0</Version>
+    <Authors>Mode-Smith</Authors>
+
+    <!-- Change this if Valheim is installed somewhere else. -->
+    <ValheimDir>C:\Program Files (x86)\Steam\steamapps\common\Valheim</ValheimDir>
+    <ManagedDir>$(ValheimDir)\valheim_Data\Managed</ManagedDir>
+    <BepInExDir>$(ValheimDir)\BepInEx</BepInExDir>
+  </PropertyGroup>
+
+  <!-- References to the game and BepInEx. Private=false means "compile against it, but don't copy it
+       into our output" - the game already has these DLLs at runtime. -->
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExDir)\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDir)\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="assembly_valheim">
+      <HintPath>$(ManagedDir)\assembly_valheim.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(ManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- After a successful build, copy the mod into BepInEx\plugins so the game picks it up. -->
+  <Target Name="CopyToPlugins" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExDir)\plugins\GrassRenderDistance" />
+  </Target>
+
+</Project>
