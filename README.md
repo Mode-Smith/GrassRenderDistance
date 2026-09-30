@@ -4,8 +4,10 @@ A small BepInEx mod for Valheim (1.0) that lets you set how far away grass and o
 
 ## Installation
 
+**Download: [Grass Render Distance on Nexus Mods](https://www.nexusmods.com/valheim/mods/4125)**
+
 1. Install [BepInExPack Valheim](https://thunderstore.io/c/valheim/p/denikson/BepInExPack_Valheim/).
-2. Download the latest release and extract it into your Valheim folder, so the DLL ends up at
+2. Download the mod from Nexus Mods and extract it into your Valheim folder, so the DLL ends up at
    `Valheim\BepInEx\plugins\GrassRenderDistance\GrassRenderDistance.dll`.
 3. Start the game once to generate the config file.
 
