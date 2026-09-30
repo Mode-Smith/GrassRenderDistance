@@ -1,0 +1,9 @@
+{
+  "name": "GrassRenderDistance",
+  "version_number": "1.1.0",
+  "website_url": "https://github.com/Mode-Smith/GrassRenderDistance",
+  "description": "Fix grass pop-in: set how far grass and ground clutter are drawn (vanilla 40 m). Small plants and saplings are extended too. Configurable, client-side.",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.2351"
+  ]
+}
